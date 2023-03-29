@@ -18,9 +18,17 @@
       <vfs_project />
       <vfs_file>C:\GNAT\2021\bin\src\marcimain.adb</vfs_file>
     </file_marker>
-    <file_marker current="true" column=" 11" line=" 2" >
+    <file_marker column=" 11" line=" 2" >
       <vfs_project />
       <vfs_file>C:\GNAT\2021\bin\src\marcimain.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\dalvarezca\Documents\Repos\curso_ada\Racionales\racionales.gpr</vfs_project>
+      <vfs_file>C:\Users\dalvarezca\Documents\Repos\curso_ada\Racionales\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 23" line=" 62" >
+      <vfs_project>C:\Users\dalvarezca\Documents\Repos\curso_ada\Racionales\racionales.gpr</vfs_project>
+      <vfs_file>C:\Users\dalvarezca\Documents\Repos\curso_ada\Racionales\src\racionales.adb</vfs_file>
     </file_marker>
   </Project>
   <Project >

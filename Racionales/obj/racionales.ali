@@ -2,16 +2,17 @@ V "GNAT Lib v2021"
 A -gnatA
 A -mtune=generic
 A -march=x86-64
-P ZX
+P SS ZX
 
 RN
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
 RV NO_IO
+RV NO_SECONDARY_STACK
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 
-U racionales%b		racionales.adb		b91df13d NE OO PK
+U racionales%b		racionales.adb		736a9911 NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.numerics%s	a-numeri.ads		a-numeri.ali
@@ -19,6 +20,8 @@ Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 Z system.concat_3%s	s-conca3.adb		s-conca3.ali
 Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.val_int%s	s-valint.ads		s-valint.ali
 
 U racionales%s		racionales.ads		103122fc EE NE OO PK
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
@@ -39,7 +42,7 @@ D a-unccon.ads		20210520051130 0e9b276f ada.unchecked_conversion%s
 D interfac.ads		20210520051132 edec285f interfaces%s
 D i-cstrea.ads		20210520051132 e53d8b8e interfaces.c_streams%s
 D racionales.ads	20230328085410 103122fc racionales%s
-D racionales.adb	20230328085748 752d28ab racionales%b
+D racionales.adb	20230329064426 bf5a4087 racionales%b
 D system.ads		20210520051136 2ffa5114 system%s
 D s-conca3.ads		20210520051132 0b705ca5 system.concat_3%s
 D s-crtl.ads		20210520051132 0ebbdb71 system.crtl%s
@@ -57,6 +60,10 @@ D s-stoele.ads		20210520051134 2dc34a04 system.storage_elements%s
 D s-stoele.adb		20210520051134 ed88f8fb system.storage_elements%b
 D s-traent.ads		20210520051134 26a8d361 system.traceback_entries%s
 D s-unstyp.ads		20210520051134 2b077493 system.unsigned_types%s
+D s-valint.ads		20210520051134 e7fcadb7 system.val_int%s
+D s-valuns.ads		20210520051134 dac7b45d system.val_uns%s
+D s-valuei.ads		20210520051134 978dd0a6 system.value_i%s
+D s-valueu.ads		20210520051134 7b8fccf5 system.value_u%s
 D s-wchcon.ads		20210520051136 1b7d22d2 system.wch_con%s
 D unchconv.ads		20210520051136 ca2f9e18 unchecked_conversion%s
 G a e
@@ -79,21 +86,20 @@ X 5 a-numeri.ads
 16K13*Numerics 35e17 17|3w10
 X 11 a-textio.ads
 58K13*Text_IO 725e16 17|2w10 2r35
-262U14*New_Line 17|79s7
-463U14*Put 17|50s7 53s7 69s10 71s10 77s7
-506U14*Put_Line 17|42s10 59s10
-X 12 a-tiinio.ads
-59U14*Get 17|51s7[3|18] 54s7[3|18]
+262U14*New_Line 17|78s7
+463U14*Put 17|48s7 51s7 68s10 70s10 76s7
+493V13*Get_Line{string} 17|49s37 52s39
+506U14*Put_Line 17|42s10 57s10 58s10
 X 16 racionales.ads
-1K9*Racionales 24l5 24e15 17|5b14 116l5 116t15
+1K9*Racionales 24l5 24e15 17|5b14 115l5 115t15
 3R9*Racional 6e14 8r27 8r44 9r28 9r45 10r33 10r50 11r29 11r46 13r35 14r32
 . 15r32 16r37 16r54 22r36 17|7r27 7r44 8r19 17r28 17r45 18r19 25r33 25r50
-. 26r19 33r29 33r46 34r19 47r35 65r32 66r11 75r32 83r37 83r54 107r36
+. 26r19 33r29 33r46 34r19 46r35 64r32 65r11 74r32 82r37 82r54 106r36
 4i7*Numerador{integer} 17|11m17 11r32 11r74 20m17 20r32 20r74 28m17 28r32
-. 28r44 36m17 36r32 37r48 51m14 69r16 71r16 84r29 86m9 86r26
+. 28r44 36m17 36r32 37r48 49m9 68r16 70r16 83r29 85m9 85r26
 5i7*Denominador{positive} 17|11r44 11r60 12m17 12r34 12r48 20r44 20r60 21m17
-. 21r34 21r48 29m17 29r34 29r48 36r44 37m17 37r34 54m14 71r43 84r42 87m9
-. 87r26 110r12
+. 21r34 21r48 29m17 29r34 29r48 36r44 37m17 37r34 52m9 70r43 83r42 86m9 86r26
+. 109r12
 8V13*sumar{3R9} 8>20 8>23 17|7b13 15l8 15t13
 8r20 X{3R9} 17|7b20 11r30 11r58 12r32
 8r23 Y{3R9} 17|7b23 11r42 11r72 12r46
@@ -106,28 +112,28 @@ X 16 racionales.ads
 11V13*dividir{3R9} 11>22 11>25 17|33b13 44l8 44t15
 11r22 X{3R9} 17|33b22 36r30 37r32 43r17
 11r25 Y{3R9} 17|33b25 36r42 37r46
-13V13*get_Racional{boolean} 13<27 17|47b13 61l8 61t20
-13r27 R{3R9} 17|47b27 51m12 51r12 54m12 54r12
-14U14*put_Racional 14>28 17|65b14 73l8 73t20 78s7
-14r28 R{3R9} 17|65b28 66r23
-15U14*put_Racional 15>28 15>42 17|75b14 80l8 80t20
-15r28 R{3R9} 17|75b28 78r20
-15i42 Etiqueta{integer} 17|75b42 77r27
-16V13*Simplificar{3R9} 16=26 17|83b13 90l8 90t19 109s11
-16r26 X{3R9} 17|83b26 84r27 84r40 86m7 86r24 87m7 87r24 88r14
-19V13*GCD{integer} 19>18 19>31 17|84s23 94b13 105l8 105t11
-19i18 X{integer} 17|94b18 95r22
-19i31 Y{positive} 17|94b31 96r22
-22V13*Is_Integer{boolean} 22=25 17|68s10 107b13 114l8 114t18
-22r25 X{3R9} 17|107b25 109m7 109m23 109r23 110r10
+13V13*get_Racional{boolean} 13<27 17|46b13 60l8 60t20
+13r27 R{3R9} 17|46b27 49m7 52m7
+14U14*put_Racional 14>28 17|64b14 72l8 72t20 77s7
+14r28 R{3R9} 17|64b28 65r23
+15U14*put_Racional 15>28 15>42 17|74b14 79l8 79t20
+15r28 R{3R9} 17|74b28 77r20
+15i42 Etiqueta{integer} 17|74b42 76r27
+16V13*Simplificar{3R9} 16=26 17|82b13 89l8 89t19 108s11
+16r26 X{3R9} 17|82b26 83r27 83r40 85m7 85r24 86m7 86r24 87r14
+19V13*GCD{integer} 19>18 19>31 17|83s23 93b13 104l8 104t11
+19i18 X{integer} 17|93b18 94r22
+19i31 Y{positive} 17|93b31 95r22
+22V13*Is_Integer{boolean} 22=25 17|67s10 106b13 113l8 113t18
+22r25 X{3R9} 17|106b25 108m7 108m23 108r23 109r10
 X 17 racionales.adb
 8r7 sumResult{16|3R9} 11m7 12m7 14r14
 18r7 resResult{16|3R9} 20m7 21m7 22r14
 26r7 mulResult{16|3R9} 28m7 29m7 30r14
 34r7 divResult{16|3R9} 36m7 37m7 38r14
-66r7 A{16|3R9} 68m21 68r21 69r14 71r14 71r41
-84i7 MCD{integer} 86r38 87r40
-95i7 A{integer} 100r15 101m10 104r14
-96i7 B{integer} 99r13 101r15 102m10 102r21
-97i7 T{integer} 100m10 102r15
+65r7 A{16|3R9} 67m21 67r21 68r14 70r14 70r41
+83i7 MCD{integer} 85r38 86r40
+94i7 A{integer} 99r15 100m10 103r14
+95i7 B{integer} 98r13 100r15 101m10 101r21
+96i7 T{integer} 99m10 101r15
 

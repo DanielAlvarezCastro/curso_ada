@@ -43,19 +43,18 @@ package body Racionales is
          return X;
    end dividir;
 
-   --function get_Racional return Racional is
    function get_Racional (R : out Racional) return Boolean is
-   -- R3: Racional;
    begin
       Put ("Introduce el numerador: ");
-      Get (R.Numerador);
+      R.Numerador := Integer'Value (Get_Line);
 
       Put ("Introduce el denominador: ");
-      Get (R.Denominador);
+      R.Denominador := Integer'Value (Get_Line);
 
       return True;
    exception
       when Constraint_Error =>
+         Put_Line ("ERROR! Por favor introduce un número válido.");
          Put_Line ("El denominador no puede ser 0 ni negativo.");
          return False;
    end Get_Racional;
